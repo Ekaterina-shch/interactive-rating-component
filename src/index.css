@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: Overpass;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./../src/fonts/Overpass-Regular.ttf');
+}
+@font-face {
+  font-family: Overpass;
+  font-weight: 900;
+  font-display: swap;
+  src: url('./../src/fonts/Overpass-Bold.ttf');
+}
+
+body {
+  font-family: 'Overpass', sans-serif;
+}
+
+@layer components {
+  .bg-circle {
+    @apply p-3 bg-light-grey/10 rounded-full w-11 h-11 flex justify-center;
+  }
+  .bg-circle-text {
+    @apply pt-[0.85rem] text-light-grey text-[15px] font-bold hover:bg-orange hover:text-dark-blue;
+  }
+  .bg-circle-text.active {
+    @apply bg-white text-dark-blue;
+  }
+  .btn-submit {
+    @apply bg-orange text-dark-blue w-full rounded-3xl pt-2.5 pb-2 font-bold hover:bg-white uppercase tracking-wide;
+  }
+}
