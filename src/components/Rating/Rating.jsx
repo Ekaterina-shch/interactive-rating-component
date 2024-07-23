@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import iconStar from './../../assets/images/icon-star.svg';
 
-const Rating = () => {
+const Rating = ({ setRating, setIsRating }) => {
+  const [id, setId] = useState([1, 2, 3, 4, 5]);
+  const [activeBtnId, setActiveBtnId] = useState(0);
+
+  const onSubmit = () => {
+    if (activeBtnId !== 0) {
+      setIsRating(false);
+    }
+    return setRating(activeBtnId);
+  };
   return (
     <div className="flex flex-col justify-between">
       <div className="bg-circle items-center mb-5">
@@ -12,13 +22,25 @@ const Rating = () => {
         appreciated to help us improve our offering!
       </p>
       <div className="flex justify-between mt-3 mb-5">
-        <button className="bg-circle bg-circle-text">1</button>
-        <button className="bg-circle bg-circle-text">2</button>
-        <button className="bg-circle bg-circle-text">3</button>
-        <button className="bg-circle bg-circle-text">4</button>
-        <button className="bg-circle bg-circle-text">5</button>
+        {id.map((id) => {
+          return (
+            <button
+              key={id}
+              className={
+                activeBtnId === id
+                  ? 'bg-circle bg-circle-text active'
+                  : 'bg-circle bg-circle-text'
+              }
+              onClick={() => setActiveBtnId(id)}
+            >
+              {id}
+            </button>
+          );
+        })}
       </div>
-      <button className="btn-submit">Submit</button>
+      <button className="btn-submit" onClick={onSubmit}>
+        Submit
+      </button>
     </div>
   );
 };
